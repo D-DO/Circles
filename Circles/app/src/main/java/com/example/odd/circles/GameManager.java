@@ -3,7 +3,11 @@ package com.example.odd.circles;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
+
 public class GameManager {
+    public static final int AMOUNT_ENEMY_CIRCLES = 10;
+    private ArrayList<EnemyCircle> enemyCircles;
     private MainCircle mainCircle;
     private CanvasView canvasView;
     private static int width;
@@ -14,7 +18,15 @@ public class GameManager {
         width = w;
         height = h;
         initMainCircle();
+        initEnemyCircles();
 
+    }
+
+    private void initEnemyCircles() {
+        enemyCircles = new ArrayList<EnemyCircle>();
+        for (int i = 0; i < AMOUNT_ENEMY_CIRCLES; i++) {
+            enemyCircles.add(EnemyCircle.getRandomCircle());
+        }
     }
 
     public static int getWidth() {
@@ -26,14 +38,18 @@ public class GameManager {
     }
 
     private void initMainCircle() {
-        mainCircle = new MainCircle(width/2, height/2);
+        mainCircle = new MainCircle(width / 2, height / 2);
     }
 
     public void onDraw() {
         canvasView.drawCicle(mainCircle);
+        for (EnemyCircle circle : enemyCircles) {
+            canvasView.drawCicle(circle);
+
+        }
     }
 
     public void onTouchEvent(int x, int y) {
-        mainCircle.moveMainCircleWhenTouchAt(x,y);
+        mainCircle.moveMainCircleWhenTouchAt(x, y);
     }
 }
