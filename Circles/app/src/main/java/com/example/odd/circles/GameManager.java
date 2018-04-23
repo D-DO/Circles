@@ -27,6 +27,13 @@ public class GameManager {
         for (int i = 0; i < AMOUNT_ENEMY_CIRCLES; i++) {
             enemyCircles.add(EnemyCircle.getRandomCircle());
         }
+        calculateAndSetCirclesColor();
+    }
+
+    private void calculateAndSetCirclesColor() {
+        for (EnemyCircle enemyCircle : enemyCircles) {
+            enemyCircle.setEnemyOrFoodColorDependsOf(mainCircle);
+        }
     }
 
     public static int getWidth() {
