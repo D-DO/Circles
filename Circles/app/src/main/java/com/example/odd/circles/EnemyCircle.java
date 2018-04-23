@@ -1,5 +1,7 @@
 package com.example.odd.circles;
 
+import android.graphics.Color;
+
 import java.util.Random;
 
 public class EnemyCircle extends SimpleCircle {
@@ -18,7 +20,9 @@ public class EnemyCircle extends SimpleCircle {
 
         int radius = FROM_RADIUS + random.nextInt(TO_RADIUS - FROM_RADIUS);
 
-        return new EnemyCircle(x,y, radius);
+        EnemyCircle enemyCircle = new EnemyCircle(x,y, radius);
+        enemyCircle.setColor(Color.RED);
+        return enemyCircle;
 
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.hardware.display.DisplayManager;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Display;
@@ -53,6 +52,7 @@ public class CanvasView extends View implements ICanvasView {
 
     @Override
     public void drawCicle(SimpleCircle circle) {
+        paint.setColor(circle.getColor());
         canvas.drawCircle(circle.getX(), circle.getY(), circle.getRadius(), paint);
     }
 
