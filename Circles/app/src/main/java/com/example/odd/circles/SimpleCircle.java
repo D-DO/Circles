@@ -33,4 +33,8 @@ class SimpleCircle {
     public void setColor(int color) {
         this.color = color;
     }
+
+    public boolean isIntersect(SimpleCircle circle) {
+        return radius - circle.radius >= Math.sqrt(Math.pow(x-circle.x, 2)+Math.pow(y-circle.y,2));
+    }
 }

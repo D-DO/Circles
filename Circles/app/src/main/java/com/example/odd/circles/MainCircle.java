@@ -19,4 +19,8 @@ public class MainCircle extends SimpleCircle {
         x += dx;
         y += dy;
     }
+
+    public SimpleCircle getCircleArea() {
+        return new SimpleCircle(x, y, radius * 3);
+    }
 }
