@@ -11,16 +11,26 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
-public class CanvasView extends View {
+public class CanvasView extends View implements ICanvasView {
     public static int width;
     public static int height;
     private GameManager gameManager;
+    private Paint paint;
+    Canvas canvas;
 
 
     public CanvasView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initPaint();
         initWidthAndHeight(context);
         gameManager = new GameManager(this, width, height);
+    }
+
+
+    private void initPaint() {
+        paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     private void initWidthAndHeight(Context context) {
@@ -36,6 +46,12 @@ public class CanvasView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        gameManager.onDraw(canvas);
+        this.canvas = canvas;
+        gameManager.onDraw();
+    }
+
+    @Override
+    public void drawCicle(MainCircle circle) {
+        canvas.drawCircle(circle.getX(), circle.getY(), circle.getRadius(), paint);
     }
 }
