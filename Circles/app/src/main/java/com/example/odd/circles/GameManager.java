@@ -69,12 +69,35 @@ public class GameManager {
     }
 
     private void checkCollision() {
+        SimpleCircle circleForDel = null;
         for (EnemyCircle circle : enemyCircles) {
             if (mainCircle.isIntersect(circle)){
+
+                if (circle.isSmallerThan(mainCircle)){
+                    mainCircle.growRadius(circle);
+                    circleForDel = circle;
+                    calculateAndSetCirclesColor();
+                } else {
                 gameEnd();
+                return;
+                }
+
             }
 
         }
+//            for (EnemyCircle circle: enemyCircles) {
+//                if (circleForDel == circle){
+//                    enemyCircles.remove(circle);
+//                }
+//            }
+
+            if (circleForDel != null){
+            enemyCircles.remove(circleForDel);
+            }
+
+            if (enemyCircles.isEmpty()){
+            gameEnd();
+            }
     }
 
     private void gameEnd() {
