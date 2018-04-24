@@ -57,5 +57,15 @@ public class EnemyCircle extends SimpleCircle {
     public void moveOneStep() {
         x += dx;
         y += dy;
+        checkBounds();
+    }
+
+    private void checkBounds() {
+        if ((x<0) || (x>GameManager.getWidth())) {
+            dx = - dx;
+        }
+        if ((y<0) || (y>GameManager.getHeight())) {
+            dy = - dy;
+        }
     }
 }

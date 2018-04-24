@@ -54,7 +54,6 @@ public class GameManager {
     }
 
 
-
     public void onDraw() {
         canvasView.drawCicle(mainCircle);
         for (EnemyCircle circle : enemyCircles) {
@@ -65,7 +64,23 @@ public class GameManager {
 
     public void onTouchEvent(int x, int y) {
         mainCircle.moveMainCircleWhenTouchAt(x, y);
+        checkCollision();
         moveCircles();
+    }
+
+    private void checkCollision() {
+        for (EnemyCircle circle : enemyCircles) {
+            if (mainCircle.isIntersect(circle)){
+                gameEnd();
+            }
+
+        }
+    }
+
+    private void gameEnd() {
+        mainCircle.initRadius();
+        initEnemyCircles();
+        canvasView.reDraw();
     }
 
     private void moveCircles() {
