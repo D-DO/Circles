@@ -1,8 +1,5 @@
 package com.example.odd.circles;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-
 import java.util.ArrayList;
 
 public class GameManager {
@@ -68,5 +65,12 @@ public class GameManager {
 
     public void onTouchEvent(int x, int y) {
         mainCircle.moveMainCircleWhenTouchAt(x, y);
+        moveCircles();
+    }
+
+    private void moveCircles() {
+        for (EnemyCircle circle : enemyCircles) {
+            circle.moveOneStep();
+        }
     }
 }
