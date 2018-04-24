@@ -22,12 +22,16 @@ public class GameManager {
 
     }
 
+    private void initMainCircle() {
+        mainCircle = new MainCircle(width / 2, height / 2);
+    }
+
     private void initEnemyCircles() {
+        SimpleCircle mainCircleArea = mainCircle.getCircleArea();
         enemyCircles = new ArrayList<EnemyCircle>();
         for (int i = 0; i < AMOUNT_ENEMY_CIRCLES; i++) {
             EnemyCircle circle;
 
-            SimpleCircle mainCircleArea = mainCircle.getCircleArea();
             do {
                 circle = EnemyCircle.getRandomCircle();
             } while (circle.isIntersect(mainCircleArea));
@@ -52,9 +56,7 @@ public class GameManager {
         return height;
     }
 
-    private void initMainCircle() {
-        mainCircle = new MainCircle(width / 2, height / 2);
-    }
+
 
     public void onDraw() {
         canvasView.drawCicle(mainCircle);
