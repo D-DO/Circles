@@ -5,5 +5,7 @@ package com.example.odd.circles;
  */
 
 public interface ICanvasView {
-   void drawCicle(SimpleCircle circle);
+    void drawCicle(SimpleCircle circle);
+
+    void showMessage(String text);
 }

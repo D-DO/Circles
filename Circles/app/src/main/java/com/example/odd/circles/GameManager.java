@@ -1,5 +1,7 @@
 package com.example.odd.circles;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class GameManager {
@@ -9,6 +11,7 @@ public class GameManager {
     private CanvasView canvasView;
     private static int width;
     private static int height;
+
 
     public GameManager(CanvasView canvasView, int w, int h) {
         this.canvasView = canvasView;
@@ -78,7 +81,7 @@ public class GameManager {
                     circleForDel = circle;
                     calculateAndSetCirclesColor();
                 } else {
-                gameEnd();
+                gameEnd("OOPS!");
                 return;
                 }
 
@@ -96,15 +99,17 @@ public class GameManager {
             }
 
             if (enemyCircles.isEmpty()){
-            gameEnd();
+            gameEnd("YOU WIN!");
             }
     }
 
-    private void gameEnd() {
+    private void gameEnd(String text) {
+         canvasView.showMessage(text);
         mainCircle.initRadius();
         initEnemyCircles();
         canvasView.reDraw();
     }
+
 
     private void moveCircles() {
         for (EnemyCircle circle : enemyCircles) {
